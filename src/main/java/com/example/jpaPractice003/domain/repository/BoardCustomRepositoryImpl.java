@@ -31,7 +31,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
     @Override
     public Page<BoardDTO> findByPageRequest(PageRequestDTO pageRequestDTO) {
 
-        PageRequest pageable = PageRequest.of(pageRequestDTO.getPage(), pageRequestDTO.getSize());
+        PageRequest pageable = PageRequest.of(pageRequestDTO.getPage()-1, pageRequestDTO.getSize());
 
         List<BoardDTO> fetch = jpaQueryFactory.select(new QBoardDTO(board.id, board.title, board.content, board.writer, board.regDate, board.modDate))
                                               .from(board)
